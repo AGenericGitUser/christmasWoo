@@ -27,7 +27,7 @@ script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
 script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
 var user = null;
-var moveSpeed = 5;
+var moveSpeed = 5000;
 var clickRequired = 10;
 var clickCount = 0;
 let validNames = ["meg", "megan", "josh", "joshua", "troy", "mini", "nick", "melissa", "holly", "sarah"]
@@ -43,10 +43,10 @@ document.addEventListener('keydown', (e) => {
         document.getElementById("ticket").style.display="block";
 
         document.getElementById("ticket").style.cursor = 'pointer';
+        moveSpeed=500;
         document.getElementById("ticket").onclick = function() {
           ticketClicked();
         }
-        animateDiv("ticket")
 
       } else {
         moveSpeed = 2;
@@ -54,8 +54,8 @@ document.addEventListener('keydown', (e) => {
         document.getElementById("wrong1").style.display="block";
         document.getElementById("wrong2").style.display="block";
         
-        animateDiv("wrong1");
-        animateDiv("wrong2");
+        animateDiv("wrong1", "true");
+        animateDiv("wrong2", "true");
       };
 
       }
@@ -68,7 +68,7 @@ function ticketClicked() {
     if(clickRequired-clickCount > 0) {
         document.getElementById("main").style.backgroundColor="black";
         document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (clickRequired - clickCount) + " more times to reveal prize!!!";
-        moveSpeed = moveSpeed * 0.8;
+        animateDiv("ticket");
         clickCount ++;
     } else {
       document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (clickRequired - clickCount) + " more times to reveal prize!!!";
@@ -97,12 +97,16 @@ function makeNewPosition(){
     
 }
 
-function animateDiv(elementID){
+function animateDiv(elementID, repeat){
     var newq = makeNewPosition();
     $('#' + elementID).animate({ top: newq[0], left: newq[1] }, function(){
-      setTimeout(function() { animateDiv(elementID); }, 500 * moveSpeed);   
+      if(repeat) {
+        setTimeout(() => {
+          animateDiv(elementID, repeat);
+        }, 500 * moveSpeed);
+      }
     });
-    
+  
 };
 
 function getRandomColor() {
