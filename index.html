@@ -41,12 +41,7 @@ document.addEventListener('keydown', (e) => {
         document.getElementById("main").style.backgroundColor="red";
         document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me to reveal prize!!!";
         document.getElementById("ticket").style.display="block";
-
         document.getElementById("ticket").style.cursor = 'pointer';
-        moveSpeed=500;
-        document.getElementById("ticket").onclick = function() {
-          ticketClicked();
-        }
 
       } else {
         moveSpeed = 2;
