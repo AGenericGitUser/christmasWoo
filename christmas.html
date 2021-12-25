@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  
+<body id="main">
+
+<div > 
+  <div id="enter" style="display: flex; flex-direction: column; padding: 30px; align-items: center;">
+    <h2>State your name cuz</h2>
+    <input type="text" id="name" name="name">
+    <h2>Then pls press enter  </h2>
+    </div>
+  </div>
+  <div id="wrong1" style="display: none;position:fixed">
+    wrong name innit, this site isnt for u, are u lost???
+  </div>
+  <div  id="wrong2" style="display: none;position:fixed">
+    refresh if you got your name wrong
+  </div>
+  <div id="ticket" style="display: none;position:fixed; text-align: center; border-style: dashed;padding: 10px;background-color: green;color: white;">Wooo youre a winner, click me, click me, im a golden ticket</div>
+</div>
+
+
+<script>
+
+var script = document.createElement('script');
+script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
+script.type = 'text/javascript';
+document.getElementsByTagName('head')[0].appendChild(script);
+var user = null;
+var moveSpeed = 1;
+var clickCount = 0;
+let validNames = ["meg", "megan", "josh", "joshua", "troy", "mini", "nick", "melissa", "holly", "sarah"]
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      let curVal = document.getElementById("name").value;
+      console.log(curVal);
+      if(validNames.includes(curVal.toLowerCase())) {
+        user = curVal;
+        document.getElementById("enter").style.display="none";
+        document.getElementById("main").style.backgroundColor="red";
+        document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me to reveal prize!!!";
+        document.getElementById("ticket").style.display="block";
+
+        document.getElementById("ticket").style.cursor = 'pointer';
+        document.getElementById("ticket").onclick = function() {
+          ticketClicked();
+        }
+        animateDiv("ticket")
+
+      } else {
+        document.getElementById("enter").style.display="none";
+        document.getElementById("wrong1").style.display="block";
+        document.getElementById("wrong2").style.display="block";
+        
+        animateDiv("wrong1");
+        animateDiv("wrong2");
+      };
+
+      }
+    }
+);
+
+function ticketClicked() {
+    if(clickCount < 6) {
+        document.getElementById("main").style.backgroundColor="black";
+        document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (6 - clickCount) + " more times to reveal prize!!!";
+        moveSpeed = moveSpeed * 0.8;
+        clickCount ++;
+    } else {
+      document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (6 - clickCount) + " more times to reveal prize!!!";
+      moveSpeed = 3000;
+      setTimeout(() => {
+        revealPrize();
+      }, 1200);
+    }
+
+}
+
+function revealPrize() {
+  
+}
+
+function makeNewPosition(){
+    
+    // Get viewport dimensions (remove the dimension of the div)
+    var h = $(window).height() - 50;
+    var w = $(window).width() - 50;
+    
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+    
+    return [nh,nw];    
+    
+}
+
+function animateDiv(elementID){
+    var newq = makeNewPosition();
+    $('#' + elementID).animate({ top: newq[0], left: newq[1] }, function(){
+      setTimeout(function() { animateDiv(elementID); }, 500 * moveSpeed);   
+    });
+    
+};
+
+
+</script> 
+
+
+
+</body>
+</html>
+
