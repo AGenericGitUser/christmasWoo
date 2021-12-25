@@ -28,6 +28,7 @@ script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
 var user = null;
 var moveSpeed = 5;
+var clickRequired = 20;
 var clickCount = 0;
 let validNames = ["meg", "megan", "josh", "joshua", "troy", "mini", "nick", "melissa", "holly", "sarah"]
 document.addEventListener('keydown', (e) => {
@@ -62,13 +63,15 @@ document.addEventListener('keydown', (e) => {
 );
 
 function ticketClicked() {
-    if(clickCount < 6) {
+        document.getElementById("main").style.backgroundColor=getRandomColor();
+  
+    if(clickRequired < 6) {
         document.getElementById("main").style.backgroundColor="black";
-        document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (6 - clickCount) + " more times to reveal prize!!!";
+        document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (clickRequired - clickCount) + " more times to reveal prize!!!";
         moveSpeed = moveSpeed * 0.8;
         clickCount ++;
     } else {
-      document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (6 - clickCount) + " more times to reveal prize!!!";
+      document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (clickRequired - clickCount) + " more times to reveal prize!!!";
       moveSpeed = 3000;
       setTimeout(() => {
         revealPrize();
@@ -101,6 +104,15 @@ function animateDiv(elementID){
     });
     
 };
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
 
 </script> 
