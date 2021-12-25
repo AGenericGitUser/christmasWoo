@@ -16,7 +16,7 @@
   <div  id="wrong2" style="display: none;position:fixed">
     refresh if you got your name wrong
   </div>
-  <div id="ticket" style="display: none;position:fixed; text-align: center; border-style: dashed;padding: 10px;background-color: green;color: white;">Wooo youre a winner, click me, click me, im a golden ticket</div>
+  <div id="ticket" onmousedown="ticketClicked()" style="display: none;position:fixed; text-align: center; border-style: dashed;padding: 10px;background-color: green;color: white;">Wooo youre a winner, click me, click me, im a golden ticket</div>
 </div>
 
 
@@ -27,7 +27,7 @@ script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
 script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
 var user = null;
-var moveSpeed = 1;
+var moveSpeed = 5;
 var clickCount = 0;
 let validNames = ["meg", "megan", "josh", "joshua", "troy", "mini", "nick", "melissa", "holly", "sarah"]
 document.addEventListener('keydown', (e) => {
@@ -48,6 +48,7 @@ document.addEventListener('keydown', (e) => {
         animateDiv("ticket")
 
       } else {
+        moveSpeed = 2;
         document.getElementById("enter").style.display="none";
         document.getElementById("wrong1").style.display="block";
         document.getElementById("wrong2").style.display="block";
@@ -77,7 +78,7 @@ function ticketClicked() {
 }
 
 function revealPrize() {
-  
+
 }
 
 function makeNewPosition(){
