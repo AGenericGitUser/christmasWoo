@@ -40,6 +40,7 @@ document.addEventListener('keydown', (e) => {
         user = curVal;
         document.getElementById("enter").style.display="none";
         document.getElementById("main").style.backgroundColor="red";
+        document.getElementById("pic").src = curVal.toLowerCase() + ".jpg";
         document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me to reveal prize!!!";
         document.getElementById("ticket").style.display="block";
         document.getElementById("ticket").style.cursor = 'pointer';
@@ -67,7 +68,7 @@ function ticketClicked() {
         
         document.getElementById("pic").style.position="fixed";
         document.getElementById("ticket").style.position="fixed";
-        document.getElementById("pic").width += 40
+        document.getElementById("pic").width += 70
         animateDiv("ticket");
         animateDiv("pic");
         clickCount ++;
