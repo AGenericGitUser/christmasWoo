@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+ .blink_me {
+    animation: blinker 3s linear infinite;
+  }
   
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+    </style>
+    </head>
+  
+
 <body id="main">
 
 <div > 
@@ -17,7 +31,9 @@
     refresh if you got your name wrong
   </div>
   <div id="ticket" onmousedown="ticketClicked()" style="display: none; z-index: 100;text-align: center; border-style: dashed;padding: 10px;background-color: green;color: white;">Wooo youre a winner, click me, click me, im a golden ticket</div>
-  <img id="pic" width="200px"  style="display: none" src="mini.jpg" alt="Italian Trulli">
+  <div class="blink_me" id="winnings" style="position:absolute; display: none; z-index: 100;text-align: center; border-style: dashed;padding: 10px;background-color: green;color: white;">Wooo!! <br><br>Merry christmas<br><br>I hope youre free on the 30th september, because youve just won tickets to see parcels!!!
+  <br> <br> Merry christmas!!! <br> <br> (This is real i got you a parcels tic for christmas, cant wait, c u there)</div>
+  <img id="pic" width="200px"  style="display: none; z-index: 1" src="mini.jpg" alt=":(">
 </div>
 
 
@@ -31,7 +47,7 @@ var user = null;
 var moveSpeed = 5000;
 var clickRequired = 10;
 var clickCount = 0;
-let validNames = ["meg", "megan", "josh", "joshua", "troy", "mini", "nick", "melissa", "holly", "sarah"]
+let validNames = ["meg", "josh", "troy", "mini", "nick", "holly", "sarah"]
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       let curVal = document.getElementById("name").value;
@@ -47,7 +63,7 @@ document.addEventListener('keydown', (e) => {
         document.getElementById("pic").style.display="block";
 
       } else {
-        moveSpeed = 2;
+        moveSpeed = 5;
         document.getElementById("enter").style.display="none";
         document.getElementById("wrong1").style.display="block";
         document.getElementById("wrong2").style.display="block";
@@ -62,7 +78,7 @@ document.addEventListener('keydown', (e) => {
 
 function ticketClicked() {
         document.getElementById("main").style.backgroundColor=getRandomColor();
-  
+        clickCount ++;
     if(clickRequired-clickCount > 0) {
         document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (clickRequired - clickCount) + " more times to reveal prize!!!";
         
@@ -71,19 +87,21 @@ function ticketClicked() {
         document.getElementById("pic").width += 70
         animateDiv("ticket");
         animateDiv("pic");
-        clickCount ++;
+        
     } else {
       document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (clickRequired - clickCount) + " more times to reveal prize!!!";
       moveSpeed = 3000;
       setTimeout(() => {
         revealPrize();
-      }, 1200);
+      }, 400);
     }
 
 }
 
 function revealPrize() {
 
+  document.getElementById("ticket").style.display="none";
+  document.getElementById("winnings").style.display="block";
 }
 
 function makeNewPosition(elementID){
