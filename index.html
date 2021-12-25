@@ -85,11 +85,11 @@ function revealPrize() {
 
 }
 
-function makeNewPosition(){
+function makeNewPosition(elementID){
     
     // Get viewport dimensions (remove the dimension of the div)
-    var h = $(window).height() - 50;
-    var w = $(window).width() - 50;
+    var h = $(window).height() - $('#' + elementID).height();
+    var w = $(window).width() - $('#' + elementID).width();
     
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
@@ -99,7 +99,7 @@ function makeNewPosition(){
 }
 
 function animateDiv(elementID, repeat){
-    var newq = makeNewPosition();
+    var newq = makeNewPosition(elementID);
     $('#' + elementID).animate({ top: newq[0], left: newq[1] }, function(){
       if(repeat) {
         setTimeout(() => {
