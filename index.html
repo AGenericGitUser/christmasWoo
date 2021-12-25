@@ -17,6 +17,7 @@
     refresh if you got your name wrong
   </div>
   <div id="ticket" onmousedown="ticketClicked()" style="display: none;position:fixed; text-align: center; border-style: dashed;padding: 10px;background-color: green;color: white;">Wooo youre a winner, click me, click me, im a golden ticket</div>
+  <img id="pic" width="100px" height="100px" style="display: none;position:fixed" src="mini.jpg" alt="Italian Trulli">
 </div>
 
 
@@ -42,6 +43,7 @@ document.addEventListener('keydown', (e) => {
         document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me to reveal prize!!!";
         document.getElementById("ticket").style.display="block";
         document.getElementById("ticket").style.cursor = 'pointer';
+        document.getElementById("pic").style.display="block";
 
       } else {
         moveSpeed = 2;
@@ -61,9 +63,9 @@ function ticketClicked() {
         document.getElementById("main").style.backgroundColor=getRandomColor();
   
     if(clickRequired-clickCount > 0) {
-        document.getElementById("main").style.backgroundColor="black";
         document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (clickRequired - clickCount) + " more times to reveal prize!!!";
         animateDiv("ticket");
+        animateDiv("pic");
         clickCount ++;
     } else {
       document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (clickRequired - clickCount) + " more times to reveal prize!!!";
