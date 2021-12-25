@@ -16,8 +16,8 @@
   <div  id="wrong2" style="display: none;position:fixed">
     refresh if you got your name wrong
   </div>
-  <div id="ticket" onmousedown="ticketClicked()" style="display: none;position:fixed; text-align: center; border-style: dashed;padding: 10px;background-color: green;color: white;">Wooo youre a winner, click me, click me, im a golden ticket</div>
-  <img id="pic" width="100px" height="100px" style="display: none;position:fixed" src="mini.jpg" alt="Italian Trulli">
+  <div id="ticket" onmousedown="ticketClicked()" style="display: none; z-index: 100;text-align: center; border-style: dashed;padding: 10px;background-color: green;color: white;">Wooo youre a winner, click me, click me, im a golden ticket</div>
+  <img id="pic" width="200px"  style="display: none" src="mini.jpg" alt="Italian Trulli">
 </div>
 
 
@@ -64,6 +64,10 @@ function ticketClicked() {
   
     if(clickRequired-clickCount > 0) {
         document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (clickRequired - clickCount) + " more times to reveal prize!!!";
+        
+        document.getElementById("pic").style.position="fixed";
+        document.getElementById("ticket").style.position="fixed";
+        document.getElementById("pic").width += 40
         animateDiv("ticket");
         animateDiv("pic");
         clickCount ++;
