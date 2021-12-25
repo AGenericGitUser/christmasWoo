@@ -8,7 +8,7 @@
   
   @keyframes blinker {
     50% {
-      opacity: 0;
+      opacity: 0.5;
     }
   }
     </style>
@@ -33,7 +33,7 @@
   <div id="ticket" onmousedown="ticketClicked()" style="display: none; z-index: 100;text-align: center; border-style: dashed;padding: 10px;background-color: green;color: white;">Wooo youre a winner, click me, click me, im a golden ticket</div>
   <div class="blink_me" id="winnings" style="position:absolute; display: none; z-index: 100;text-align: center; border-style: dashed;padding: 10px;background-color: green;color: white;">Wooo!! <br><br>Merry christmas<br><br>I hope youre free on the 30th september, because youve just won tickets to see parcels!!!
   <br> <br> Merry christmas!!! <br> <br> (This is real i got you a parcels tic for christmas, cant wait, c u there)</div>
-  <img id="pic" width="200px"  style="display: none; z-index: 1" src="mini.jpg" alt=":(">
+  <img id="pic" width="20px"  style="display: none; z-index: 1" src="mini.jpg" alt=":(">
 </div>
 
 
@@ -84,7 +84,7 @@ function ticketClicked() {
         
         document.getElementById("pic").style.position="fixed";
         document.getElementById("ticket").style.position="fixed";
-        document.getElementById("pic").width += 70
+        document.getElementById("pic").width += 175
         animateDiv("ticket");
         animateDiv("pic");
         
