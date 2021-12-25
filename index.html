@@ -65,7 +65,7 @@ document.addEventListener('keydown', (e) => {
 function ticketClicked() {
         document.getElementById("main").style.backgroundColor=getRandomColor();
   
-    if(clickRequired < 6) {
+    if(clickRequired-clickCount > 0) {
         document.getElementById("main").style.backgroundColor="black";
         document.getElementById("ticket").innerHTML = "Woohoo! <br> <br> You're a winner " + user + "!!! <br><br> Click me " + (clickRequired - clickCount) + " more times to reveal prize!!!";
         moveSpeed = moveSpeed * 0.8;
